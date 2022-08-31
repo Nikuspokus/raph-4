@@ -1,5 +1,9 @@
 <template>
-  <HelloWorld msg="Welcome to JSONPlaceholder"/>
+    <div id="app">
+    <router-view></router-view>
+    <HelloWorld msg="Welcome to JSONPlaceholder"/>
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>

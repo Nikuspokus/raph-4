@@ -1,16 +1,22 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <li v-for="post in posts" :key="post.id">
-      {{ post.id }}
-      {{ post.title }}
+    <div style=" width: 650px ;
+    margin-left: auto;
+    margin-right: auto">
+    <ol  class="list-post" v-for="post in posts" :key="post.id">
       <div>
-        <button>Voir</button>
-      </div>
-    </li>
-    <!-- <ul>
-      {{ post }}
-    </ul> -->
+        <table class="table-line" >
+          <strong>{{ post.id }}</strong>
+          {{ post.title }}
+          <router-link :to="`/post/${post.id}`">
+            <button @click="showIdPost">Voir</button>
+          </router-link>
+          </table>
+        </div>
+    </ol>
+  </div>
+    
   </div>
 </template>
 
@@ -25,16 +31,16 @@ export default {
   },
   setup () {
     const posts = ref([]);
-    // const test = () => {
-    //   router.push(`/posts/:${posts.value}`);
-    // };
+
+    const showIdPost = ( post) => {
+      alert(`${post.id}`)
+    }
+  
     onMounted(async () => {
       try {
         await axios
           .get("https://jsonplaceholder.typicode.com/posts")
           .then((response) => {
-            console.log(response.data);
-            console.log("ok");
             posts.value = response.data;
           });
       } catch (error) {
@@ -43,36 +49,13 @@ export default {
     });
     return {
       posts,
+      showIdPost,
     };
-    // const post = ref([])
 
-    // const loadPost = async () => {
-    //   try {
-    //     const response = await axios.get('https://jsonplaceholder.typicode.com/posts')
-    //     post.value = response
-    //   } catch(err) {
-    //     console.log(err);
-    //   }
-    // }
-    // loadPost()  
-
-
-
-
-    // axios.get('https://jsonplaceholder.typicode.com/posts')
-    // .then(response => {
-    //   // handle repose
-    //   post.value = response
-    // })
-    // return {
-    //   post
-    // }
   }
-  // faire un onMounted
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;
@@ -87,5 +70,19 @@ li {
 }
 a {
   color: #42b983;
+}
+.table-line {
+  width:650px;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid grey;
+  border-radius: 6px;
+  padding: 10px;
+
+}
+.list-post {
+  justify-content : center;
+  margin: auto;
+  padding: 10px;
 }
 </style>
