@@ -1,20 +1,19 @@
 <template>
-    <div id="app">
-    <router-view></router-view>
-    <HelloWorld msg="Welcome to JSONPlaceholder"/>
+  <div id="app">
+    <HelloWorld msg="Welcome to JSONPlaceholder" />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import HelloWorld from "./views/HelloWorld.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    HelloWorld
-  }
-}
+    HelloWorld,
+  },
+};
 </script>
 
 <style>

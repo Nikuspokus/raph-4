@@ -1,22 +1,22 @@
-import Vue from "vue";
-import Router from "vue-router";
-import Post from "@/views/Post";
-import HelloWorld from "@/components/HelloWorld.vue";
+import * as VueRouter from "vue-router";
+import PostDetails from "@/components/PostDetails";
+import HelloWorld from "@/views/HelloWorld.vue";
 
-Vue.use(Router);
-
-export default new Router({
+const router = VueRouter.createRouter({
   mode: "history",
+  history: VueRouter.createWebHashHistory(),
   routes: [
     {
       path: "/",
       name: "home",
-      component: HelloWorld
+      component: HelloWorld,
     },
     {
-      path: "/post/:id",
-      name: "post",
-      component: Post
-    }
-  ]
+      path: "/postdetails/:id",
+      name: "postdetails",
+      component: PostDetails,
+    },
+  ],
 });
+
+export default router;

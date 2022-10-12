@@ -1,41 +1,42 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <div style=" width: 650px ;
-    margin-left: auto;
-    margin-right: auto">
-    <ol  class="list-post" v-for="post in posts" :key="post.id">
-      <div>
-        <table class="table-line" >
-          <strong>{{ post.id }}</strong>
-          {{ post.title }}
-          <router-link :to="`/post/${post.id}`">
-            <button @click="showIdPost">Voir</button>
-          </router-link>
+    <div style="width: 650px; margin-left: auto; margin-right: auto">
+      <ol class="list-post" v-for="post in posts" :key="post.id">
+        <div>
+          <table class="table-line">
+            <strong>{{ post.id }}</strong>
+            {{
+              post.title
+            }}
+            <!-- <router-link :to="`/post/${post.id}`"> -->
+            <button @click="showIdPost(post)">Voir</button>
+            <!-- <button>Voir</button> -->
           </table>
         </div>
-    </ol>
+      </ol>
+    </div>
   </div>
-    
-  </div>
+  <router-view class="view"></router-view>
 </template>
 
 <script>
-import axios from 'axios'
-import {ref, onMounted} from 'vue'
+import router from "@/router";
+import axios from "axios";
+import { ref, onMounted } from "vue";
 
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
-    msg: String
+    msg: String,
   },
-  setup () {
+  setup() {
     const posts = ref([]);
 
-    const showIdPost = ( post) => {
-      alert(`${post.id}`)
-    }
-  
+    const showIdPost = (post) => {
+      router.push({ name: "postdetails", params: { id: post.id } });
+    };
+
     onMounted(async () => {
       try {
         await axios
@@ -51,9 +52,8 @@ export default {
       posts,
       showIdPost,
     };
-
-  }
-}
+  },
+};
 </script>
 
 <style scoped>
@@ -72,16 +72,15 @@ a {
   color: #42b983;
 }
 .table-line {
-  width:650px;
+  width: 650px;
   display: flex;
   justify-content: space-between;
   border: 1px solid grey;
   border-radius: 6px;
   padding: 10px;
-
 }
 .list-post {
-  justify-content : center;
+  justify-content: center;
   margin: auto;
   padding: 10px;
 }
