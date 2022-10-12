@@ -1,17 +1,17 @@
 <template>
   <div id="app">
-    <HelloWorld msg="Welcome to JSONPlaceholder" />
+    <TitleApp msg="Welcome to JSONPlaceholder" />
     <router-view></router-view>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./views/HelloWorld.vue";
+import TitleApp from "./components/TitleApp.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    TitleApp,
   },
 };
 </script>
