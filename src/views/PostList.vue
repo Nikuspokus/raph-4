@@ -9,8 +9,11 @@
             {{
               post.title
             }}
-            <!-- <router-link :to="`/post/${post.id}`"> -->
-            <button @click="showIdPost(post)">Voir</button>
+            <!-- <router-link :to="`/post/${post.id}`">Voir</router-link> -->
+            <router-link :to="{ name: 'postdetails', params: { id: post.id } }"
+              >Voir</router-link
+            >
+            <!-- <button @click="showIdPost(post)">Voir</button> -->
             <!-- <button>Voir</button> -->
           </table>
         </div>

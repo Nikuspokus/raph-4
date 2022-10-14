@@ -1,17 +1,15 @@
 import { createRouter, createWebHistory } from "vue-router";
-import PostDetails from "@/views/PostDetails";
-import PostList from "@/views/PostList.vue";
 
 const routes = [
   {
     path: "/",
     name: "home",
-    component: PostList,
+    component: () => import("@/views/PostList.vue"),
   },
   {
     path: "/postdetails/:id",
     name: "postdetails",
-    component: PostDetails,
+    component: () => import("@/views/PostDetails.vue"),
   },
 ];
 

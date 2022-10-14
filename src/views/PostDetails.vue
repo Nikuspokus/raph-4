@@ -1,25 +1,14 @@
 <template>
   <div id="postdetails">
-    <div style="width: 650px; margin-left: auto; margin-right: auto">
-      <ol class="list-post" v-for="post in posts" :key="post.id">
-        <div>
-          <table class="table-line">
-            {{
-              post.title
-            }}
-            <!-- <router-link :to="`/post/${post.id}`"> -->
-            <button @click="showIdPost(post)">Voir</button>
-            <!-- <button>Voir</button> -->
-          </table>
-        </div>
-      </ol>
-    </div>
+    <p></p>
     <div style="width: 650px; margin-left: auto; margin-right: auto">
       <table class="table-line">
-        <p>
-          <strong>sdfsf</strong>
-          qsdqsdqsdqsdqsdqsdqsdqsd
-        </p>
+        <tr>
+          <strong>{{ post.title }}</strong>
+        </tr>
+        <tr>
+          <strong>{{ post.body }}</strong>
+        </tr>
       </table>
     </div>
     <router-link to="/">Back</router-link>
@@ -27,29 +16,31 @@
 </template>
 
 <script>
-import router from "@/router";
 import axios from "axios";
 import { ref, onMounted } from "vue";
+import { useRoute } from "vue-router";
+
 export default {
   name: "PostDetails",
   setup() {
-    const posts = ref([]);
-    const showIdPost = () => {
-      router.push({ name: "home" });
-    };
+    const route = useRoute();
+    const post = ref("");
+
+    console.log(post);
+
     onMounted(async () => {
       try {
         await axios
-          .get("https://jsonplaceholder.typicode.com/posts/:id")
+          .get(`https://jsonplaceholder.typicode.com/posts/${route.params.id}`)
           .then((response) => {
-            posts.value = response.data;
+            post.value = response.data;
           });
       } catch (error) {
         console.log(error);
       }
     });
     return {
-      showIdPost,
+      post,
     };
   },
 };
