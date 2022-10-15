@@ -1,15 +1,32 @@
 <template>
-  <div id="postdetails">
-    <p></p>
-    <div style="width: 650px; margin-left: auto; margin-right: auto">
-      <table class="table-line">
-        <tr>
+  <div class="d-flex justify-content-center">
+    <div style="width: 80vw; height: 300px; margin: auto">
+      <!-- <div style="width: 80vw; height: 300px"> -->
+      <!-- <table class="table-line"> -->
+      <div class="col">
+        <div class="col">
           <strong>{{ post.title }}</strong>
-        </tr>
-        <tr>
+          <textarea
+            style="width: 100%"
+            size="100"
+            type="text"
+            v-model="post.title"
+          ></textarea>
+          <p>{{ title }}</p>
+        </div>
+        <div class="row">
           <strong>{{ post.body }}</strong>
-        </tr>
-      </table>
+          <!-- <input type="text" v-model="post.body" /> -->
+          <textarea
+            style="width: 100%; height: 90px"
+            type="text"
+            v-model="post.body"
+          >
+          </textarea>
+          <p>{{ body }}</p>
+        </div>
+      </div>
+      <!-- </table> -->
     </div>
     <router-link to="/">Back</router-link>
   </div>
@@ -25,6 +42,8 @@ export default {
   setup() {
     const route = useRoute();
     const post = ref("");
+    const title = ref("");
+    const body = ref("");
 
     console.log(post);
 
@@ -41,6 +60,8 @@ export default {
     });
     return {
       post,
+      title,
+      body,
     };
   },
 };

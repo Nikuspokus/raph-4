@@ -10,9 +10,15 @@
               post.title
             }}
             <!-- <router-link :to="`/post/${post.id}`">Voir</router-link> -->
-            <router-link :to="{ name: 'postdetails', params: { id: post.id } }"
-              >Voir</router-link
-            >
+            <div style="display: inline-block">
+              <router-link
+                :to="{ name: 'postdetails', params: { id: post.id } }"
+              >
+                Afficher
+              </router-link>
+
+              <button>Supprimer</button>
+            </div>
             <!-- <button @click="showIdPost(post)">Voir</button> -->
             <!-- <button>Voir</button> -->
           </table>
