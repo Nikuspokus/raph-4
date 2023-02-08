@@ -5,30 +5,30 @@
       <!-- <table class="table-line"> -->
       <div class="col">
         <div class="col">
+        <div >
           <strong>{{ post.title }}</strong>
-          <textarea
-            style="width: 100%"
-            size="100"
-            type="text"
-            v-model="post.title"
-          ></textarea>
+        </div>
+          <textarea style="width: 40rem; height: 6rem; margin-top:2em" type="text" v-model="post.title"></textarea>
           <p>{{ title }}</p>
         </div>
         <div class="row">
+        <div>
           <strong>{{ post.body }}</strong>
+        </div>
           <!-- <input type="text" v-model="post.body" /> -->
-          <textarea
-            style="width: 100%; height: 90px"
-            type="text"
-            v-model="post.body"
-          >
+          <textarea style="width: 40rem; height: 6rem ; margin-top:2em" type="text" v-model="post.body">
           </textarea>
           <p>{{ body }}</p>
         </div>
       </div>
       <!-- </table> -->
+    <button>
+      <router-link  class="routerLink" to="/">Back</router-link>
+    </button><button>
+      <router-link  class="routerLink" to="/">Update</router-link>
+    </button>
     </div>
-    <router-link to="/">Back</router-link>
+ 
   </div>
 </template>
 
@@ -47,6 +47,8 @@ export default {
 
     console.log(post);
 
+
+
     onMounted(async () => {
       try {
         await axios
@@ -57,6 +59,7 @@ export default {
       } catch (error) {
         console.log(error);
       }
+      
     });
     return {
       post,
@@ -71,18 +74,21 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
-  display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
-.table-line > p {
+
+.table-line>p {
   width: 650px;
   display: flex;
   justify-content: space-between;
@@ -96,5 +102,18 @@ a {
   justify-content: center;
   margin: auto;
   padding: 10px;
+}
+
+.routerLink
+ {
+  text-decoration: none;
+  color: red;
+}
+.truncate {
+  width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: start;
 }
 </style>

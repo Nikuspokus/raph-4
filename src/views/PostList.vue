@@ -6,13 +6,15 @@
         <div>
           <table class="table-line">
             <strong>{{ post.id }}</strong>
+            <div class="truncate">
             {{
               post.title
             }}
+            </div>
             <!-- <router-link :to="`/post/${post.id}`">Voir</router-link> -->
-            <div style="display: inline-block">
+            <div class="btn">
               <router-link
-                :to="{ name: 'postdetails', params: { id: post.id } }"
+                :to="{ name: 'postdetails', params: { id: post.id } }" class="routerLink"
               >
                 Afficher
               </router-link>
@@ -84,6 +86,7 @@ a {
   width: 650px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   border: 1px solid grey;
   border-radius: 6px;
   padding: 10px;
@@ -92,5 +95,27 @@ a {
   justify-content: center;
   margin: auto;
   padding: 10px;
+}
+
+.truncate {
+  width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: start;
+}
+
+.btn {
+  width: 10em;
+  height: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.routerLink
+ {
+  text-decoration: none;
+  color: red;
 }
 </style>
