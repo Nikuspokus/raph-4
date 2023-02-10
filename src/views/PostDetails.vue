@@ -29,6 +29,7 @@
       <!-- </table> -->
     </div>
     <router-link to="/">Back</router-link>
+    <router-link to="/" @click="updatePost()">Update</router-link>
   </div>
 </template>
 
@@ -47,6 +48,10 @@ export default {
 
     console.log(post);
 
+    const updatePost = () => {
+      alert('Le post à été mis à jour')
+    }
+
     onMounted(async () => {
       try {
         await axios
@@ -62,6 +67,7 @@ export default {
       post,
       title,
       body,
+      updatePost,
     };
   },
 };

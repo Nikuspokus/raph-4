@@ -11,15 +11,12 @@
             }}
             <!-- <router-link :to="`/post/${post.id}`">Voir</router-link> -->
             <div style="display: inline-block">
-              <router-link
-                :to="{ name: 'postdetails', params: { id: post.id } }"
-              >
+              <router-link :to="{ name: 'postdetails', params: { id: post.id } }">
                 Afficher
               </router-link>
 
               <button>Supprimer</button>
             </div>
-            <!-- <button @click="showIdPost(post)">Voir</button> -->
             <!-- <button>Voir</button> -->
           </table>
         </div>
@@ -29,8 +26,7 @@
   <router-view class="view"></router-view>
 </template>
 
-<script>
-import router from "@/router";
+<script >
 import axios from "axios";
 import { ref, onMounted } from "vue";
 
@@ -42,9 +38,7 @@ export default {
   setup() {
     const posts = ref([]);
 
-    const showIdPost = (post) => {
-      router.push({ name: "postdetails", params: { id: post.id } });
-    };
+
 
     onMounted(async () => {
       try {
@@ -59,7 +53,6 @@ export default {
     });
     return {
       posts,
-      showIdPost,
     };
   },
 };
@@ -69,17 +62,21 @@ export default {
 h3 {
   margin: 40px 0 0;
 }
+
 ul {
   list-style-type: none;
   padding: 0;
 }
+
 li {
   display: inline-block;
   margin: 0 10px;
 }
+
 a {
   color: #42b983;
 }
+
 .table-line {
   width: 650px;
   display: flex;
@@ -88,6 +85,7 @@ a {
   border-radius: 6px;
   padding: 10px;
 }
+
 .list-post {
   justify-content: center;
   margin: auto;
